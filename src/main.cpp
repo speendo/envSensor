@@ -492,7 +492,11 @@ void loop()
     }
 
     // Post it on MQTT
-    sendMqtt();
+    if (!sendMqtt()) {
+      if (setupMqtt()) {
+        sendMqtt();
+      }
+    }
 
     // Debug Output
     /*
